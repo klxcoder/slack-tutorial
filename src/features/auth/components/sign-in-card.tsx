@@ -1,7 +1,9 @@
+import { Card } from "@/components/ui/card"
+
 export const SignInCard = () => {
   return (
-    <div>
+    <Card>
       Sign In Card
-    </div>
+    </Card>
   )
 }
