@@ -28,6 +28,14 @@ export const SignInCard = () => {
             type="email"
             required
           />
+          <Input
+            disabled={false}
+            value={""}
+            onChange={() => { }}
+            placeholder="Password"
+            type="password"
+            required
+          />
         </form>
       </CardContent>
     </Card>
