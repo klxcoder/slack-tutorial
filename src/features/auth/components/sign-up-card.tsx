@@ -46,6 +46,14 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
             type="password"
             required
           />
+          <Input
+            disabled={false}
+            value={""}
+            onChange={() => { }}
+            placeholder="Confirm password"
+            type="password"
+            required
+          />
           <Button
             type="submit"
             className="w-full"
@@ -85,7 +93,7 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
           </Button>
         </div>
         <p className="text-xs text-muted-foreground">
-          {`Don't have an account?`} <span
+          {`Already have an account?`} <span
             onClick={() => setState("signIn")}
             className="text-sky-700 hover:underline cursor-pointer"
           >Sign in</span>
