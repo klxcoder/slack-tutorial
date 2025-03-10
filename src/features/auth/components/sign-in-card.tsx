@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
@@ -36,6 +37,14 @@ export const SignInCard = () => {
             type="password"
             required
           />
+          <Button
+            type="submit"
+            className="w-full"
+            size={"lg"}
+            disabled={false}
+          >
+            Continue
+          </Button>
         </form>
       </CardContent>
     </Card>
