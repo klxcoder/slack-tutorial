@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card"
 
 export const SignInCard = () => {
   return (
-    <Card>
+    <Card className="w-full h-full p-8">
       Sign In Card
     </Card>
   )
