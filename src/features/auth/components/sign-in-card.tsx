@@ -60,7 +60,9 @@ export const SignInCard = () => {
             size={"lg"}
             className="w-full relative"
           >
-            <FcGoogle />
+            <FcGoogle
+              className="size-5 absolute top-2.5 left-2.5"
+            />
             Continue with Google
           </Button>
         </div>
