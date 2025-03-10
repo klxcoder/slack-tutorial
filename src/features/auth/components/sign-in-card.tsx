@@ -12,6 +12,10 @@ import {
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 
+interface SignInCardProps {
+  // https://youtu.be/lXITA5MZIiI?t=1698
+}
+
 export const SignInCard = () => {
   return (
     <Card className="w-full h-full p-8">
