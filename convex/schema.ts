@@ -7,7 +7,12 @@ const schema = defineSchema({
   tasks: defineTable({
     text: v.string(),
     isCompleted: v.boolean(),
-  })
+  }),
+  workspaces: defineTable({
+    name: v.string(),
+    userId: v.id("users"),
+    joinCode: v.string(),
+  }),
   // Your other tables...
 });
 
