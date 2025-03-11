@@ -68,7 +68,7 @@ export const SignInCard = ({ setState }: SignInCardProps) => {
         >
           <Button
             disabled={false}
-            onClick={() => { }}
+            onClick={() => void signIn("google")}
             variant={"outline"}
             size={"lg"}
             className="w-full relative"
