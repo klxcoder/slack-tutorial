@@ -33,8 +33,6 @@ export const UserButton = () => {
 
   const avatarFallback = name!.charAt(0).toUpperCase()
 
-  console.log({ data, avatarFallback })
-
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger className="outline-none relative">
