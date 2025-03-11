@@ -1,4 +1,4 @@
-const SignInPage = () => {
+const AuthPage = () => {
 
   return (
     <div>
@@ -7,4 +7,4 @@ const SignInPage = () => {
   );
 }
 
-export default SignInPage
+export default AuthPage
