@@ -17,7 +17,10 @@ export const CreateWorkspaceModal = () => {
   const [open, setOpen] = useCreateWorkspaceModal()
   const [name, setName] = useState("")
 
-  const { mutate } = useCreateWorkspace()
+  const {
+    mutate,
+    isPending,
+  } = useCreateWorkspace()
 
   const handleClose = () => {
     setOpen(false)
@@ -57,7 +60,7 @@ export const CreateWorkspaceModal = () => {
           <Input
             value={name}
             onChange={(e) => setName(e.target.value)}
-            disabled={false}
+            disabled={isPending}
             required
             autoFocus
             minLength={3}
@@ -65,7 +68,7 @@ export const CreateWorkspaceModal = () => {
           />
           <div className="flex justify-end">
             <Button
-              disabled={false}
+              disabled={isPending}
             >
               Create
             </Button>
