@@ -12,8 +12,10 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useCreateWorkspace } from "../api/use-create-workspace"
 import { FormEvent, useState } from "react"
+import { useRouter } from "next/navigation"
 
 export const CreateWorkspaceModal = () => {
+  const router = useRouter()
   const [open, setOpen] = useCreateWorkspaceModal()
   const [name, setName] = useState("")
 
@@ -24,7 +26,7 @@ export const CreateWorkspaceModal = () => {
 
   const handleClose = () => {
     setOpen(false)
-    // TODO: Clear form
+    setName("")
   }
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -34,8 +36,8 @@ export const CreateWorkspaceModal = () => {
       name: "Workspace 1"
     }, {
       onSuccess(data) {
-        console.log(data)
-        // Redirect to the workspace id
+        router.push(`/workspace/${data}`)
+        handleClose()
       },
       onError(error) {
         console.log(error)
