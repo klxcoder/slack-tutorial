@@ -1,10 +1,10 @@
-interface WorkspaceIdPageProps {
-  params: {
-    workspaceId: string,
-  }
-}
+"use client"
 
-const WorkspaceIdPage = ({ params }: WorkspaceIdPageProps) => {
+import { useParams } from "next/navigation"
+
+const WorkspaceIdPage = () => {
+  const params = useParams()
+
   return (
     <div>
       workspaceId: {params.workspaceId}
