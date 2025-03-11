@@ -10,13 +10,37 @@ import {
 import { useCreateWorkspaceModal } from "../store/use-create-workspace-modal"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { useCreateWorkspace } from "../api/use-create-workspace"
+import { FormEvent } from "react"
 
 export const CreateWorkspaceModal = () => {
   const [open, setOpen] = useCreateWorkspaceModal()
 
+  const { mutate } = useCreateWorkspace()
+
   const handleClose = () => {
     setOpen(false)
     // TODO: Clear form
+  }
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    await mutate({
+      name: "Workspace 1"
+    }, {
+      onSuccess(data) {
+        console.log(data)
+        // Redirect to the workspace id
+      },
+      onError(error) {
+        console.log(error)
+        // Show toast error
+      },
+      onSettled: () => {
+        // Reset form
+      }
+    })
   }
 
   return (
@@ -25,7 +49,10 @@ export const CreateWorkspaceModal = () => {
         <DialogHeader>
           <DialogTitle>Add a workspace</DialogTitle>
         </DialogHeader>
-        <form className="space-y-4">
+        <form
+          className="space-y-4"
+          onSubmit={handleSubmit}
+        >
           <Input
             value={""}
             disabled={false}
