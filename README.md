@@ -13,3 +13,6 @@ bunx convex dev # Backend, make sure: Convex functions ready!
 
 # Note
   - Add later
+
+# Will Continue from
+  - https://youtu.be/lXITA5MZIiI?t=11066
