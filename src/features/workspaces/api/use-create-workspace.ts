@@ -1,6 +1,6 @@
 import { useMutation } from "convex/react"
 import { api } from "../../../../convex/_generated/api"
-import { useCallback, useState } from "react"
+import { useCallback, useMemo, useState } from "react"
 import { Id } from "../../../../convex/_generated/dataModel"
 
 type RequestType = {
@@ -17,23 +17,22 @@ type Options = {
 }
 
 export const useCreateWorkspace = () => {
-  const [isPending, setIsPending] = useState(false)
   const [data, setData] = useState<ResponseType>(null)
   const [error, setError] = useState<Error | null>(null)
-  const [isSuccess, setIsSuccess] = useState(false)
-  const [isError, setIsError] = useState(false)
-  const [isSettle, setIsSettle] = useState(false)
+  const [status, setStatus] = useState<"success" | "error" | "settled" | "pending" | null>(null)
+
+  const isPending = useMemo(() => status === "pending", [status])
+  const isSuccess = useMemo(() => status === "success", [status])
+  const isError = useMemo(() => status === "error", [status])
+  const isSettle = useMemo(() => status === "settled", [status])
 
   const mutation = useMutation(api.workspaces.create)
 
   const mutate = useCallback(async (values: RequestType, options: Options) => {
     try {
-      setIsPending(true)
       setData(null)
       setError(null)
-      setIsSuccess(false)
-      setIsError(false)
-      setIsSettle(false)
+      setStatus("pending")
 
       const response = await mutation(values)
       options?.onSuccess?.(response)
@@ -43,9 +42,9 @@ export const useCreateWorkspace = () => {
       if (options?.throwError) {
         throw error
       }
+      setStatus("error")
     } finally {
-      setIsPending(false)
-      setIsSettle(true)
+      setStatus("settled")
       options?.onSettled?.()
     }
   }, [mutation])
