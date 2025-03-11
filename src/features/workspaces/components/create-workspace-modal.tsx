@@ -11,10 +11,11 @@ import { useCreateWorkspaceModal } from "../store/use-create-workspace-modal"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useCreateWorkspace } from "../api/use-create-workspace"
-import { FormEvent } from "react"
+import { FormEvent, useState } from "react"
 
 export const CreateWorkspaceModal = () => {
   const [open, setOpen] = useCreateWorkspaceModal()
+  const [name, setName] = useState("")
 
   const { mutate } = useCreateWorkspace()
 
@@ -54,7 +55,8 @@ export const CreateWorkspaceModal = () => {
           onSubmit={handleSubmit}
         >
           <Input
-            value={""}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             disabled={false}
             required
             autoFocus
