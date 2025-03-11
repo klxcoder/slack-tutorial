@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { Search } from "lucide-react"
+import { Info, Search } from "lucide-react"
 
 export const Toolbar = () => {
   return (
@@ -14,6 +14,11 @@ export const Toolbar = () => {
           <span className="text-white text-sm">
             Search workspace
           </span>
+        </Button>
+      </div>
+      <div className="ml-auto flex-1 flex items-center justify-end">
+        <Button>
+          <Info />
         </Button>
       </div>
     </nav>
