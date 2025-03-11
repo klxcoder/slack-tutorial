@@ -15,6 +15,8 @@ export const WorkspaceSwitcher = () => {
           A
         </Button>
       </DropdownMenuTrigger>
+      <DropdownMenuContent side="bottom" align="start" className="w-64">
+      </DropdownMenuContent>
     </DropdownMenu>
   )
 }
