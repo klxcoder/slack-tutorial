@@ -11,8 +11,10 @@ import { useGetWorkspaces } from "@/features/workspaces/api/use-get-workspaces"
 import { useCreateWorkspaceModal } from "@/features/workspaces/store/use-create-workspace-modal"
 import { useWorkspaceId } from "@/hooks/use-workspace-id"
 import { Loader } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export const WorkspaceSwitcher = () => {
+  const router = useRouter()
   const workspaceId = useWorkspaceId()
   const [, setOpen] = useCreateWorkspaceModal()
 
@@ -34,6 +36,7 @@ export const WorkspaceSwitcher = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent side="bottom" align="start" className="w-64">
         <DropdownMenuItem
+          onClick={() => router.push(`/workspace/${workspaceId}`)}
           className="cursor-pointer flex-col justify-start items-start capitalize"
         >
           {workspace?.name}
