@@ -21,14 +21,21 @@ const WorkspaceIdLayout = ({ children }: WorkspaceIdLayoutProps) => {
         <Sidebar />
         <ResizablePanelGroup
           direction="horizontal"
+          autoSaveId={"ca-workspace-layout"}
         >
-          <ResizablePanel>
+          <ResizablePanel
+            defaultSize={20}
+            minSize={11}
+            className="bg-[#5E2C5F]"
+          >
             <div>
               Channels Sidebar
             </div>
           </ResizablePanel>
           <ResizableHandle withHandle />
-          <ResizablePanel>
+          <ResizablePanel
+            minSize={20}
+          >
             {children}
           </ResizablePanel>
         </ResizablePanelGroup>
