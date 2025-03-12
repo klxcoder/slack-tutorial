@@ -7,6 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu"
 import { Doc } from "../../../../convex/_generated/dataModel"
+import { ChevronDown } from "lucide-react"
 
 interface WorkspaceHeaderProps {
   workspace: Doc<"workspaces">
@@ -22,7 +23,8 @@ export const WorkspaceHeader = ({ workspace }: WorkspaceHeaderProps) => {
             className="font-semibold text-lg w-auto p-1.5 overflow-hidden"
             size={"sm"}
           >
-            <span>{workspace.name}</span>
+            <span className="truncate">{workspace.name}</span>
+            <ChevronDown className="size-4 ml-1 shrink-0" />
           </Button>
         </DropdownMenuTrigger>
       </DropdownMenu>
