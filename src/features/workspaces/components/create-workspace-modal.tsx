@@ -34,7 +34,7 @@ export const CreateWorkspaceModal = () => {
     e.preventDefault()
 
     await mutate({
-      name: "Workspace 1"
+      name: name,
     }, {
       onSuccess(data) {
         router.push(`/workspace/${data}`)
