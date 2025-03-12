@@ -10,11 +10,13 @@ import {
   // DialogFooter,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-import { useRemoveWorkspace } from "@/features/workspaces/api/use-remove-workspace"
+// import { useRemoveWorkspace } from "@/features/workspaces/api/use-remove-workspace"
 import { useUpdateWorkspace } from "@/features/workspaces/api/use-update-workspace"
+import { useWorkspaceId } from "@/hooks/use-workspace-id"
 import { DialogClose, DialogTrigger } from "@radix-ui/react-dialog"
 import { TrashIcon } from "lucide-react"
-import { useState } from "react"
+import { FormEvent, useState } from "react"
+import { toast } from "sonner"
 
 interface PreferencesModalProps {
   open: boolean
@@ -27,12 +29,29 @@ export const PreferencesModal = ({
   setOpen,
   initalValue,
 }: PreferencesModalProps) => {
+  const workspaceId = useWorkspaceId()
 
   const [value, setValue] = useState(initalValue)
   const [editOpen, setEditOpen] = useState(false)
 
   const { mutate: updateWorkspace, isPending: isUpdatingWorkspace } = useUpdateWorkspace()
-  const { mutate: removeWorkspace, isPending: isRemovingWorkspace } = useRemoveWorkspace()
+  // const { mutate: removeWorkspace, isPending: isRemovingWorkspace } = useRemoveWorkspace()
+
+  const handleEdit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    updateWorkspace({
+      id: workspaceId,
+      name: value,
+    }, {
+      onSuccess() {
+        toast.success("Workspace updated")
+        setEditOpen(false)
+      },
+      onError() {
+        toast.error("Fail to update workspace")
+      }
+    })
+  }
 
   return (
     <Dialog
@@ -68,7 +87,7 @@ export const PreferencesModal = ({
               </DialogHeader>
               <form
                 className="space-y-4"
-                onSubmit={() => { }}
+                onSubmit={handleEdit}
               >
                 <Input
                   value={value}
