@@ -1,7 +1,7 @@
 import { UserButton } from "@/features/auth/components/user-button"
 import { WorkspaceSwitcher } from "./workspace-switcher"
 import { SidebarButton } from "./sidebar-button"
-import { Home } from "lucide-react"
+import { Bell, Home, MessageSquare, MoreHorizontal } from "lucide-react"
 
 export const Sidebar = () => {
   return (
@@ -11,6 +11,18 @@ export const Sidebar = () => {
         icon={Home}
         label="Home"
         isActive
+      />
+      <SidebarButton
+        icon={MessageSquare}
+        label="DMs"
+      />
+      <SidebarButton
+        icon={Bell}
+        label="Activity"
+      />
+      <SidebarButton
+        icon={MoreHorizontal}
+        label="More"
       />
       <div className="flex flex-col items-center justify-center gap-y-1 mt-auto">
         <UserButton />
