@@ -1,12 +1,18 @@
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
-  DialogTrigger,
+  DialogFooter,
+  // DialogTrigger,
   DialogHeader,
   DialogTitle,
-  DialogClose,
-  DialogFooter,
+  // DialogClose,
+  // DialogFooter,
 } from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { useRemoveWorkspace } from "@/features/workspaces/api/use-remove-workspace"
+import { useUpdateWorkspace } from "@/features/workspaces/api/use-update-workspace"
+import { DialogClose, DialogTrigger } from "@radix-ui/react-dialog"
 import { TrashIcon } from "lucide-react"
 import { useState } from "react"
 
@@ -23,6 +29,10 @@ export const PreferencesModal = ({
 }: PreferencesModalProps) => {
 
   const [value, setValue] = useState(initalValue)
+  const [editOpen, setEditOpen] = useState(false)
+
+  const { mutate: updateWorkspace, isPending: isUpdatingWorkspace } = useUpdateWorkspace()
+  const { mutate: removeWorkspace, isPending: isRemovingWorkspace } = useRemoveWorkspace()
 
   return (
     <Dialog
@@ -36,19 +46,54 @@ export const PreferencesModal = ({
           </DialogTitle>
         </DialogHeader>
         <div className="px-4 pb-4 flex flex-col gap-y-2">
-          <div className="px-5 py-4 bg-white rounded-lg border cursor-pointer hover:bg-gray-50">
-            <div className="flex items-center justify-between">
-              <p className="text-sm font-semibold">
-                Workspace name
-              </p>
-              <p className="text-sm text-[#1264a3] hover:underline font-semibold">
-                Edit
-              </p>
-            </div>
-            <p className="text-sm">
-              {value}
-            </p>
-          </div>
+          <Dialog open={editOpen} onOpenChange={setEditOpen}>
+            <DialogTrigger asChild>
+              <div className="px-5 py-4 bg-white rounded-lg border cursor-pointer hover:bg-gray-50">
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-semibold">
+                    Workspace name
+                  </p>
+                  <p className="text-sm text-[#1264a3] hover:underline font-semibold">
+                    Edit
+                  </p>
+                </div>
+                <p className="text-sm">
+                  {value}
+                </p>
+              </div>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Rename this workspace</DialogTitle>
+              </DialogHeader>
+              <form
+                className="space-y-4"
+                onSubmit={() => { }}
+              >
+                <Input
+                  value={value}
+                  disabled={isUpdatingWorkspace}
+                  onChange={(e) => setValue(e.target.value)}
+                  required
+                  autoFocus
+                  minLength={3}
+                  maxLength={80}
+                  placeholder="Workspace name e.g. 'Work', 'Personal', 'Home'"
+                />
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button
+                      variant={"outline"}
+                      disabled={isUpdatingWorkspace}
+                    >
+                      Cancel
+                    </Button>
+                  </DialogClose>
+                  <Button disabled={isUpdatingWorkspace}>Save</Button>
+                </DialogFooter>
+              </form>
+            </DialogContent>
+          </Dialog>
           <button
             disabled={false}
             onClick={() => { }}
