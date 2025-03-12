@@ -18,13 +18,13 @@ interface WorkspaceHeaderProps {
 }
 
 export const WorkspaceHeader = ({ workspace, isAdmin }: WorkspaceHeaderProps) => {
-  const [open, setOpen] = useState(false)
+  const [preferencesOpen, setPreferencesOpen] = useState(false)
 
   return (
     <>
       <PreferencesModal
-        open={open}
-        setOpen={setOpen}
+        open={preferencesOpen}
+        setOpen={setPreferencesOpen}
         initalValue={workspace.name}
       />
       <div className="flex items-center justify-between px-4 h-[49px] gap-0.5">
@@ -67,7 +67,7 @@ export const WorkspaceHeader = ({ workspace, isAdmin }: WorkspaceHeaderProps) =>
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 className="cursor-pointer py-2"
-                onClick={() => setOpen(true)}
+                onClick={() => setPreferencesOpen(true)}
               >
                 Preferences
               </DropdownMenuItem>
