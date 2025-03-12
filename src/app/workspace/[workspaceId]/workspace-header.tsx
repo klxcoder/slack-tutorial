@@ -34,7 +34,7 @@ export const WorkspaceHeader = ({ workspace, isAdmin }: WorkspaceHeaderProps) =>
           className="w-64"
         >
           <DropdownMenuItem
-            className="cursor-pointer capitalize flex bg-white p-2 rounded-sm"
+            className="cursor-pointer capitaliz"
           >
             <div
               className="size-9 relative overflow-hidden bg-[#616061] text-white font-semibold text-xl rounded-md flex items-center justify-center mr-2">
