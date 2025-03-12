@@ -20,7 +20,7 @@ export const current = query({
           .eq("workspaceId", args.workspaceId)
           .eq("userId", userId)
       ))
-      .collect()
+      .unique()
 
     if (!member) {
       return null
