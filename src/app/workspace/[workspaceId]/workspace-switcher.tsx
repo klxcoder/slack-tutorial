@@ -10,7 +10,7 @@ import { useGetWorkspace } from "@/features/workspaces/api/use-get-workspace"
 import { useGetWorkspaces } from "@/features/workspaces/api/use-get-workspaces"
 import { useCreateWorkspaceModal } from "@/features/workspaces/store/use-create-workspace-modal"
 import { useWorkspaceId } from "@/hooks/use-workspace-id"
-import { Loader } from "lucide-react"
+import { Loader, Plus } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 export const WorkspaceSwitcher = () => {
@@ -43,6 +43,21 @@ export const WorkspaceSwitcher = () => {
           <span className="text-xs text-muted-foreground">
             Active workspace
           </span>
+        </DropdownMenuItem>
+        {filteredWorkspaces?.map(workspace => (
+          <DropdownMenuItem
+            key={workspace._id}
+            className="cursor-pointer capitalize"
+            onClick={() => router.push(`/workspace/${workspace._id}`)}
+          >
+
+          </DropdownMenuItem>
+        ))}
+        <DropdownMenuItem>
+          <div className="size-9 relative overflow-hidden bg-[#f2f2f2] text-slate-800 font-semibold text-lg rounded-md flex items-center justify-center mr-2">
+            <Plus />
+          </div>
+          Create a new workspace
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
