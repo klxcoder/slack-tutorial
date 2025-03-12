@@ -10,8 +10,8 @@ interface SidebarButtonProps {
 }
 
 export const SidebarButton = ({
-  // icon,
-  // label,
+  icon: Icon,
+  label,
   isActive,
 }: SidebarButtonProps) => {
   return (
@@ -23,7 +23,11 @@ export const SidebarButton = ({
           isActive && "bg-accent/20"
         )}
       >
+        <Icon className="size-5 text-white group:hover:scale-110 transition-all" />
       </Button>
+      <span className="text-[11px] text-white group-hover:text-accent">
+        {label}
+      </span>
     </div>
   )
 }
