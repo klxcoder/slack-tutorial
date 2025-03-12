@@ -38,6 +38,12 @@ export const create = mutation({
       role: "admin",
     })
 
+    // Insert default channel to the created workspace
+    await ctx.db.insert("channels", {
+      name: "general",
+      workspaceId,
+    })
+
     return workspaceId
   }
 })
