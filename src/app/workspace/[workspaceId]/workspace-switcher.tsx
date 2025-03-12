@@ -50,7 +50,10 @@ export const WorkspaceSwitcher = () => {
             className="cursor-pointer capitalize"
             onClick={() => router.push(`/workspace/${workspace._id}`)}
           >
-
+            <div>
+              {workspace.name.charAt(0).toUpperCase()}
+            </div>
+            {workspace.name}
           </DropdownMenuItem>
         ))}
         <DropdownMenuItem
