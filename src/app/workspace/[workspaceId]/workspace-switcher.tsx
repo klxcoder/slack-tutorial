@@ -33,6 +33,14 @@ export const WorkspaceSwitcher = () => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent side="bottom" align="start" className="w-64">
+        <DropdownMenuItem
+          className="cursor-pointer flex-col justify-start items-start capitalize"
+        >
+          {workspace?.name}
+          <span className="text-xs text-muted-foreground">
+            Active workspace
+          </span>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )
