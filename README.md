@@ -15,4 +15,4 @@ bunx convex dev # Backend, make sure: Convex functions ready!
   - Add later
 
 # Will Continue from
-  - https://youtu.be/lXITA5MZIiI?t=11066
+  - https://youtu.be/lXITA5MZIiI?t=20228
