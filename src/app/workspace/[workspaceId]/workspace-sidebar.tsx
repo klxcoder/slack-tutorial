@@ -12,6 +12,7 @@ import { WorkspaceHeader } from "./workspace-header"
 import { SidebarItem } from "./sidebar-item"
 import { useGetChannels } from "@/features/channels/api/use-get-channels"
 import { WorkspaceSection } from "./workspace-section"
+import { useGetMembers } from "@/features/members/api/use-get-members"
 
 export const WorkspaceSidebar = () => {
 
@@ -20,6 +21,7 @@ export const WorkspaceSidebar = () => {
   const { data: member, isLoading: memberLoading } = useCurrentMember({ workspaceId })
   const { data: workspace, isLoading: workspaceLoading } = useGetWorkspace({ id: workspaceId })
   const { data: channels, isLoading: channelsLoading } = useGetChannels({ workspaceId })
+  const { data: members, isLoading: membersLoading } = useGetMembers({ workspaceId })
 
   if (workspaceLoading || memberLoading) {
     return (
@@ -72,6 +74,13 @@ export const WorkspaceSidebar = () => {
           />
         ))}
       </WorkspaceSection>
+      {members?.map((item) => (
+        <div
+          key={item._id}
+        >
+          {item.user.name}
+        </div>
+      ))}
     </div>
   )
 }
