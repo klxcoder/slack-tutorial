@@ -13,6 +13,7 @@ import { SidebarItem } from "./sidebar-item"
 import { useGetChannels } from "@/features/channels/api/use-get-channels"
 import { WorkspaceSection } from "./workspace-section"
 import { useGetMembers } from "@/features/members/api/use-get-members"
+import { UserItem } from "./user-item"
 
 export const WorkspaceSidebar = () => {
 
@@ -75,11 +76,12 @@ export const WorkspaceSidebar = () => {
         ))}
       </WorkspaceSection>
       {members?.map((item) => (
-        <div
+        <UserItem
           key={item._id}
-        >
-          {item.user.name}
-        </div>
+          id={item._id}
+          label={item.user.name}
+          image={item.user.image}
+        />
       ))}
     </div>
   )
